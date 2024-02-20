@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("api/todos")
 public class TodoController {
@@ -25,5 +27,17 @@ public class TodoController {
     public ResponseEntity<TodoDto> getTodoHandler(@PathVariable("id") Long id) {
         TodoDto savedTodo = todoService.getTodo(id);
         return ResponseEntity.ok(savedTodo);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<TodoDto>> getAllTodoHandler() {
+        List<TodoDto> allTodos = todoService.getAllTodo();
+        return ResponseEntity.ok(allTodos);
+    }
+
+    @PutMapping
+    public ResponseEntity<TodoDto> updateTodo( @RequestBody TodoDto todoDto) {
+        TodoDto updatedTodo = todoService.updateTodo(todoDto);
+        return ResponseEntity.ok(updatedTodo);
     }
 }

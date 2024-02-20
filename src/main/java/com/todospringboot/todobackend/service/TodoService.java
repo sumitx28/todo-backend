@@ -4,8 +4,14 @@ import com.todospringboot.todobackend.dto.TodoDto;
 import com.todospringboot.todobackend.exception.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 public interface TodoService {
     TodoDto addTodo(TodoDto todoDto);
 
-    TodoDto getTodo(Long id) throws ResourceNotFoundException;
+    TodoDto getTodo(Long id);
+
+    List<TodoDto> getAllTodo();
+
+    TodoDto updateTodo(TodoDto todoDto);
 }
