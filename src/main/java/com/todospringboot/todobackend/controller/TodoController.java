@@ -47,17 +47,15 @@ public class TodoController {
         return ResponseEntity.ok(deletedTodo);
     }
 
-    @PutMapping("{id}")
-    public ResponseEntity<TodoDto> markComplete(@PathVariable Long id , @RequestBody TodoDto todoDto) {
-        TodoDto updatedTodo;
+    @PatchMapping("complete/{id}")
+    public ResponseEntity<TodoDto> markComplete(@PathVariable Long id ) {
+        TodoDto updatedTodo = todoService.markComplete(id);
+        return ResponseEntity.ok(updatedTodo);
+    }
 
-        if(todoDto.isCompleted()) {
-            updatedTodo = todoService.markComplete(id);
-        }
-        else{
-            updatedTodo = todoService.markInComplete(id);
-        }
-
+    @PatchMapping("in-complete/{id}")
+    public ResponseEntity<TodoDto> markInComplete(@PathVariable Long id ) {
+        TodoDto updatedTodo = todoService.markInComplete(id);
         return ResponseEntity.ok(updatedTodo);
     }
 
