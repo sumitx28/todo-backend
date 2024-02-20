@@ -16,6 +16,5 @@ public class TodoDto {
     private String title;
     @NotEmpty(message = "description must be provided")
     private String description;
-    @NotEmpty(message = "completed flag must not be empty")
     private boolean completed;
 }
