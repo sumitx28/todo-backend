@@ -47,4 +47,18 @@ public class TodoController {
         return ResponseEntity.ok(deletedTodo);
     }
 
+    @PutMapping("{id}")
+    public ResponseEntity<TodoDto> markComplete(@PathVariable Long id , @RequestBody TodoDto todoDto) {
+        TodoDto updatedTodo;
+
+        if(todoDto.isCompleted()) {
+            updatedTodo = todoService.markComplete(id);
+        }
+        else{
+            updatedTodo = todoService.markInComplete(id);
+        }
+
+        return ResponseEntity.ok(updatedTodo);
+    }
+
 }
